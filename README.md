@@ -31,4 +31,4 @@ This is a **read-only public repository**. Viewers can:
 To contribute or suggest changes, please open a Pull Request.
 
 ## Author
-[Your Name/Organization]
+Rohit Kumar
