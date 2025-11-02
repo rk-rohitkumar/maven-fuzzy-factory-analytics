@@ -20,21 +20,6 @@ This project analyzes and optimizes the online retail performance of Maven Fuzzy
 - **GitHub**: Version control and collaboration
 - **GitHub Actions**: CI/CD automation
 
-## 📁 Project Structure
-
-├── docs/ # Documentation and project context
-│ ├── master-context.md
-│ ├── project-overview.md
-│ └── workflow-architecture.md
-├── data/ # Data files and data dictionary
-│ └── data-dictionary.csv
-├── scripts/ # ETL and transformation scripts
-├── pipelines/ # Data pipeline configurations
-├── dashboards/ # Power BI dashboard files
-├── governance/ # Data governance guidelines
-└── README.md # This file
-
-
 ## 📚 Documentation
 
 For detailed information, see:
