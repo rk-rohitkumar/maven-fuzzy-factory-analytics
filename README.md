@@ -1,34 +1,111 @@
 # Maven Fuzzy Factory E-Commerce Analytics
 
-## Project Overview
-This project analyzes and optimizes the online retail performance of Maven Fuzzy Factory, a teddy bear e-commerce store. It leverages detailed marketing, website session, order, and product data to drive business insights.
+## 📊 Project Overview
 
-## Key Features
-- Session-to-order conversion rate tracking
-- Revenue performance analysis
-- Marketing channel effectiveness evaluation
-- User behavior and product performance insights
+This project analyzes and optimizes the online retail performance of Maven Fuzzy Factory, a teddy bear e-commerce store. It leverages detailed marketing, website session, order, and product data to drive actionable business insights.
 
-## Technology Stack
-- **Microsoft Fabric Lakehouse** for data storage
-- **Data Pipelines** for ETL workflows
-- **Power BI** for interactive dashboards
-- **GitHub** for version control and collaboration
+## 🎯 Key Features
 
-## Project Status
-- Current Phase: Data exploration and pipeline design
-- Upcoming: Data ingestion setup, ETL pipeline creation, dashboard development
+- **Session-to-Order Conversion Tracking**: Monitor conversion rates across marketing channels
+- **Revenue Performance Analysis**: Analyze revenue per order and per session
+- **User Behavior Insights**: Understand customer patterns and preferences
+- **Product Performance**: Track product popularity and returns analysis
+- **Marketing Channel Effectiveness**: Evaluate which channels drive the best results
 
-## Documentation
-See `/docs` folder for detailed architecture, workflow, and governance guidelines.
+## 🛠️ Technology Stack
 
-## How to Use
-This is a **read-only public repository**. Viewers can:
-- Review project documentation and analysis
-- View data transformations and pipelines
-- Explore dashboards and insights
+- **Microsoft Fabric Lakehouse**: Data storage and management
+- **MS Fabric Data Pipelines**: ETL workflows and transformations
+- **Power BI**: Interactive dashboards and business intelligence
+- **GitHub**: Version control and collaboration
+- **GitHub Actions**: CI/CD automation
 
-To contribute or suggest changes, please open a Pull Request.
+## 📁 Project Structure
 
-## Author
-Rohit Kumar
+├── docs/ # Documentation and project context
+│ ├── master-context.md
+│ ├── project-overview.md
+│ └── workflow-architecture.md
+├── data/ # Data files and data dictionary
+│ └── data-dictionary.csv
+├── scripts/ # ETL and transformation scripts
+├── pipelines/ # Data pipeline configurations
+├── dashboards/ # Power BI dashboard files
+├── governance/ # Data governance guidelines
+└── README.md # This file
+
+
+## 📚 Documentation
+
+For detailed information, see:
+- **Master Context**: `docs/master-context.md` - Core objectives and project standards
+- **Project Overview**: `docs/project-overview.md` - Detailed project goals and features
+- **Workflow & Architecture**: `docs/workflow-architecture.md` - Technical architecture and data flow
+- **Data Dictionary**: `data/data-dictionary.csv` - Data schema and field definitions
+
+## 🔄 Project Workflow
+
+1. **Data Ingestion**: Raw CSV files uploaded to MS Fabric Lakehouse staging area
+2. **ETL Processing**: Data cleaned, deduplicated, and enriched using MS Fabric Dataflows
+3. **Data Loading**: Processed data loaded into curated Lakehouse tables
+4. **Analytics & Visualization**: Power BI dashboards provide business insights
+5. **Automation**: GitHub Actions schedule pipeline refresh and deployment
+
+## 📊 Dataset Information
+
+### Data Source
+
+This project uses the **Toy Store E-Commerce Database** from Maven Analytics:
+- **Dataset**: [Free Sample Dataset Download - Toy Store E-Commerce Database](https://mavenanalytics.io/data-playground/toy-store-e-commerce-database)
+- **License**: Public Domain
+- **Provider**: Maven Analytics
+
+### Dataset Overview
+
+The Maven Fuzzy Factory e-commerce database includes:
+- **Website Sessions & Pageviews**: Detailed tracking by user
+- **Order Data**: Complete transaction records
+- **Product Information**: Catalog and product details
+- **Returns & Refunds**: Customer return patterns
+- **Marketing Data**: Channel performance and campaign details
+
+### Recommended Analysis Areas
+
+- Trend analysis in website sessions and order volume
+- Session-to-order conversion rate trends
+- Marketing channel performance evaluation
+- Revenue per order and revenue per session evolution
+- Impact analysis of new product launches
+
+## 📊 Current Status
+
+- **Phase**: Data exploration and pipeline design
+- **Upcoming**: Data ingestion setup → ETL pipeline creation → Dashboard development
+
+## 👥 Access & Contribution
+
+This repository is **public and read-only**. 
+
+- **Viewers**: Can view all documentation, code, and project structure
+- **Contributions**: To suggest changes or improvements, please open a Pull Request
+
+## 📖 How to Use This Repository
+
+1. Read the documentation in `/docs` to understand the project scope and architecture
+2. Review the data dictionary in `/data` for data schema information
+3. Check pipeline configurations in `/pipelines` for ETL workflows
+4. Explore Power BI dashboards in `/dashboards` for business insights
+
+## 🔗 Related Links
+
+- [Microsoft Fabric Documentation](https://learn.microsoft.com/en-us/fabric/)
+- [Power BI Learning Resources](https://learn.microsoft.com/en-us/power-bi/)
+- [GitHub Best Practices](https://docs.github.com/en)
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+**Last Updated**: November 2, 2025
