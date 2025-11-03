@@ -1,0 +1,16 @@
+I have uploaded the following context files for my MS Fabric project:
+
+Master Context for Projects.md
+
+Project Overview.md
+
+Workflow & Architecture.md
+
+Data_Governance_Guidelines.md
+
+Detailed_Data_Governance_Implementation.md
+
+
+Whenever I ask a question or request content, please reference the relevant sections from these files to maintain accuracy, consistency, and context.
+Always align your responses with the standards, best practices, and style captured especially in the 'Master Context for Projects' file.
+If an answer requires details about project goals, architecture, or workflow, use content from the corresponding file.

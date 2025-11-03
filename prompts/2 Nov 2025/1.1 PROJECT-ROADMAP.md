@@ -1,0 +1,365 @@
+# Project Roadmap & Phase Status - Maven Fuzzy Factory E-Commerce Analytics
+
+**Last Updated:** November 2, 2025
+**Overall Status:** 35% Complete (Phases 1-3 Done, Phase 4 In Progress)
+
+---
+
+## Phase Breakdown
+
+### ✅ Phase 1: Project Initialization (100% Complete)
+**Timeline:** Completed
+**Deliverables:**
+- [x] Microsoft Fabric Workspace created: `Maven-Fuzzy-Factory-Analytics`
+- [x] GitHub repository initialized: `maven-fuzzy-factory-analytics` (Public, read-only)
+- [x] Project structure and folder organization defined
+- [x] Documentation standards established
+
+**Artifacts:**
+- Public GitHub Repository with complete documentation
+- Master Context, Project Overview, Workflow Architecture uploaded
+- README with data source attribution (Maven Analytics)
+
+---
+
+### ✅ Phase 2: Data Ingestion & Staging (100% Complete)
+**Timeline:** Completed
+**Deliverables:**
+- [x] Microsoft Fabric Lakehouse created: `mff_lakehouse`
+- [x] All 6 raw CSV files uploaded to staging folder
+- [x] Data validated and previewed
+- [x] Lakehouse folder structure organized
+
+**Data Files Loaded:**
+- website_sessions.csv (~13K records)
+- website_pageviews.csv (~60K records)
+- orders.csv (~3K records)
+- order_items.csv (~4K records)
+- products.csv (product catalog)
+- order_item_refunds.csv (refunds)
+
+---
+
+### ✅ Phase 3: ETL Pipeline Scaffolding (100% Complete)
+**Timeline:** Completed
+**Deliverables:**
+- [x] 6 Dataflow Gen2 pipelines created with Git integration enabled
+- [x] Pass-through data loading (CSV → Table mapping)
+- [x] All dataflows running successfully
+- [x] Refresh schedules configured
+
+**Dataflows Created:**
+1. `df_sessions_transform` → `stg_sessions` (13K records, pass-through loaded)
+2. `df_pageviews_transform` → `stg_website_pageviews` (60K records, pass-through loaded)
+3. `df_orders_transform` → `stg_orders` (3K records, pass-through loaded)
+4. `df_order_items_transform` → `stg_order_items` (4K records, pass-through loaded)
+5. `df_products_transform` → `stg_products` (product catalog, pass-through loaded)
+6. `df_refunds_transform` → `stg_order_item_refunds` (refunds, pass-through loaded)
+
+**Staging Layer Tables Created:**
+- All tables in `dbo` schema with `stg_` prefix
+- Data dictionary reference table: `ref_data_dictionary`
+- All tables loaded with raw data (no transformations)
+
+**Current Architecture:**
+```
+CSV Files (Staging) → Dataflows (Pass-Through) → Delta Tables (Raw Data)
+```
+
+---
+
+### 🔄 Phase 4: Data Quality Assessment & Transformation Planning (30% Complete - In Progress)
+**Timeline:** Estimated completion Nov 5, 2025
+**Deliverables:**
+- [ ] Data quality analysis per table (identify issues)
+- [ ] Null pattern documentation
+- [ ] Duplicate record assessment
+- [ ] Data type validation
+- [ ] Transformation requirements specification
+- [ ] Edge case documentation
+
+**Work Planned:**
+1. Analyze each `stg_*` table for:
+   - Duplicate records (by primary key)
+   - Null value patterns and prevalence
+   - Data type mismatches (strings vs dates, etc.)
+   - Invalid values (negative prices, future dates, etc.)
+   - Whitespace and formatting issues
+
+2. Document findings:
+   - Data quality report per table
+   - Issues severity assessment
+   - Transformation requirements
+   - Edge cases and exceptions
+   - Business logic for null handling
+
+3. Design transformation logic:
+   - Deduplication strategy
+   - Type conversion rules
+   - Null handling policies (by column)
+   - Column standardization rules
+   - Derived field specifications
+
+---
+
+### ⏳ Phase 5: Data Transformation Implementation (0% Complete - Next)
+**Timeline:** Estimated Nov 8-15, 2025 (1-2 weeks)
+**Deliverables:**
+- [ ] Enhance all 6 dataflows with transformation logic
+- [ ] Implement deduplication in each dataflow
+- [ ] Add data type conversions
+- [ ] Implement null value handling
+- [ ] Add column standardization (lowercase naming)
+- [ ] Create derived fields and calculations
+- [ ] Test all transformations
+- [ ] Monitor data quality metrics
+
+**Transformation Steps to Add:**
+For each dataflow:
+1. **Deduplication** - Remove duplicates by primary key
+2. **Type Conversion** - Fix data types (BIGINT, DATETIME, DECIMAL)
+3. **Null Handling** - Replace nulls based on business logic
+4. **Column Standardization** - Lowercase, trim whitespace
+5. **Validation** - Check for invalid values
+6. **Derived Fields** - Calculate metrics (e.g., gross_margin)
+
+**Output:** Enhanced `stg_*` tables with transformed, cleaned data
+
+---
+
+### 🎯 Phase 6: Gold Layer & Business Analytics (0% Complete - Later)
+**Timeline:** Estimated Nov 15-22, 2025 (1-2 weeks)
+**Deliverables:**
+- [ ] Create aggregated/fact tables for Power BI
+- [ ] Implement KPI calculations:
+  - Session-to-order conversion rates
+  - Revenue per session / per order
+  - Marketing channel effectiveness
+  - Product performance metrics
+- [ ] Create dimension tables (products, marketing channels)
+- [ ] Optimize queries for dashboard performance
+
+**Planned Gold Layer Tables:**
+- `gold_fact_orders` - Order-level metrics and facts
+- `gold_fact_sessions` - Session-level conversion tracking
+- `gold_dim_products` - Product dimensions
+- `gold_dim_marketing_channels` - Marketing channel dimensions
+- `gold_dim_date` - Time dimension for trends
+
+**Next Dataflows:**
+- New dataflows for aggregations
+- Or Notebooks for complex transformations
+- Using transformed `stg_*` as source
+
+---
+
+### 📊 Phase 7: Power BI Dashboards (0% Complete - Later)
+**Timeline:** Estimated Nov 22-29, 2025 (1-2 weeks)
+**Deliverables:**
+- [ ] Power BI reports created and connected to gold layer
+- [ ] Interactive dashboards built:
+  - **Marketing Dashboard:** Channel performance, UTM analysis, session trends
+  - **Sales Dashboard:** Orders, revenue trends, product performance
+  - **Conversion Dashboard:** Funnel analysis, session-to-order rates, cohort analysis
+  - **Product Dashboard:** Popularity, returns, performance analysis
+- [ ] Refresh schedules configured
+- [ ] Drill-through and interactions implemented
+- [ ] Dashboards published to GitHub/workspace
+
+**Dashboard Locations:**
+- `/dashboards` folder in GitHub repository
+- Power BI workspace: `Maven-Fuzzy-Factory-Analytics`
+
+---
+
+### 🤖 Phase 8: Automation & CI/CD (0% Complete - Final)
+**Timeline:** Estimated Nov 29-Dec 5, 2025 (1 week)
+**Deliverables:**
+- [ ] GitHub Actions workflows created
+- [ ] Dataflow refresh automation
+- [ ] Power BI refresh automation
+- [ ] Data quality validation automation
+- [ ] Monitoring and alerting setup
+- [ ] Failure notifications configured
+
+**GitHub Actions Workflows:**
+- `trigger-dataflow-refresh.yml` - Schedule dataflow runs
+- `refresh-power-bi-reports.yml` - Auto-refresh Power BI
+- `data-quality-validation.yml` - Check data quality
+- `documentation-update.yml` - Update docs on changes
+
+---
+
+### 📚 Phase 9: Documentation & Knowledge Sharing (0% Complete - Ongoing)
+**Timeline:** Nov 2 - Dec 10, 2025 (Ongoing, after each phase)
+**Deliverables:**
+- [ ] Phase 4: Data quality assessment report
+- [ ] Phase 5: Transformation logic documentation
+- [ ] Phase 6: Gold layer schema documentation
+- [ ] Phase 7: Dashboard usage guide
+- [ ] Phase 8: Automation setup guide
+- [ ] Blog post: "Building Analytics in Microsoft Fabric"
+- [ ] LinkedIn article: "Real-world learnings and pragmatic approaches"
+- [ ] GitHub Wiki: Complete setup and usage guide
+
+---
+
+## Key Metrics & Progress Tracking
+
+| Metric | Current | Target | Status |
+|--------|---------|--------|--------|
+| Raw data ingested | 6 files (~80K rows) | ✅ 6 files (~80K rows) | ✅ Complete |
+| ETL dataflows created | 6 (pass-through) | 6+ | ✅ Complete |
+| Raw data tables | 7 (stg_*) | 7 (stg_*) | ✅ Complete |
+| Data transformations | 0 (planned Phase 5) | All 6 dataflows | ⏳ Phase 5 |
+| Gold layer tables | 0 | 5+ | ⏳ Phase 6 |
+| Power BI dashboards | 0 | 4+ | ⏳ Phase 7 |
+| Automation workflows | 0 | 3+ | ⏳ Phase 8 |
+| Project completion | 35% | 100% | In Progress |
+
+---
+
+## Critical Decisions Made
+
+### 1. Staged Approach: Load First, Transform Later
+- **Decision:** Load raw data as-is to tables first
+- **Rationale:** Understand data before designing transformations
+- **Impact:** Reduced assumptions, better transformation design
+- **Timeline:** Phase 4 for analysis, Phase 5 for implementation
+
+### 2. Schema Strategy: `dbo` with Naming Prefix
+- **Decision:** Use `dbo` schema with `stg_` prefix
+- **Rationale:** Avoids Dataflow Gen2 schema discovery limitations
+- **Impact:** Simplified architecture, works reliably
+- **Future:** Can migrate to schema-based organization later
+
+### 3. Pass-Through Dataflows Initially
+- **Decision:** Simple load-as-is pattern for initial ingestion
+- **Rationale:** Fast implementation, data exploration friendly
+- **Impact:** Got data flowing quickly, can analyze before transforming
+- **Next:** Enhance dataflows with transformation logic in Phase 5
+
+### 4. Separate Dataflows Per Source
+- **Decision:** 6 independent dataflows (not 1 master)
+- **Rationale:** Modularity, independent refresh, easier debugging
+- **Impact:** Better maintainability, Git integration per dataflow
+- **Trade-off:** More items to manage, but more flexible
+
+### 5. Git Integration Enabled from Day One
+- **Decision:** Enable Git integration and Public API scenarios
+- **Rationale:** Production-ready, future CI/CD automation
+- **Impact:** Version control built-in, ready for automation
+- **Status:** GitHub Actions workflows planned Phase 8
+
+---
+
+## Dependencies & Risks
+
+### Current Risks
+- **Data Quality:** Unknown issues until Phase 4 analysis complete
+  - Mitigation: Thorough analysis in Phase 4
+  - Contingency: May discover issues requiring additional transformation
+- **Transformation Complexity:** May be more complex than anticipated
+  - Mitigation: Document all issues found in Phase 4
+  - Contingency: Timeline may shift, complexity accounted for
+
+### Future Dependencies
+- Power BI Premium/Pro licenses (for dashboard sharing)
+- Fabric capacity for scheduled refreshes
+- GitHub API access (for CI/CD automation)
+
+### Phase Dependencies
+```
+Phase 4 (Analysis) → Phase 5 (Transformation) → Phase 6 (Analytics) → Phase 7 (Dashboards) → Phase 8 (Automation)
+  ↓ Analysis Complete
+  ↓ All findings documented
+  Ready for Phase 5
+```
+
+---
+
+## Resource Requirements
+
+### Current Stack (Active)
+- ✅ Microsoft Fabric Workspace: `Maven-Fuzzy-Factory-Analytics`
+- ✅ Lakehouse: `mff_lakehouse` with 7 tables (~80K rows processed)
+- ✅ Dataflows: 6 running on schedule
+- ✅ GitHub: Public repository with documentation
+
+### Next Phase Requirements (Phase 5+)
+- Enhanced dataflow capabilities (transformation logic)
+- Notebook environment (for complex calculations)
+- Power BI Premium (if production sharing needed)
+- GitHub Actions (for automation)
+
+---
+
+## Detailed Timeline
+
+| Phase | Name | Status | Start | Target End | Duration |
+|-------|------|--------|-------|-----------|----------|
+| 1 | Initialization | ✅ Done | Nov 1 | Nov 2 | 1 day |
+| 2 | Data Ingestion | ✅ Done | Nov 2 | Nov 2 | <1 day |
+| 3 | ETL Scaffolding | ✅ Done | Nov 2 | Nov 2 | <1 day |
+| 4 | Data Quality | 30% | Nov 2 | Nov 5 | 3 days |
+| 5 | Transformations | 0% | Nov 5 | Nov 15 | 10 days |
+| 6 | Gold Layer | 0% | Nov 15 | Nov 22 | 7 days |
+| 7 | Dashboards | 0% | Nov 22 | Nov 29 | 7 days |
+| 8 | Automation | 0% | Nov 29 | Dec 5 | 6 days |
+| 9 | Documentation | 0% | Ongoing | Dec 10 | Ongoing |
+| | **TOTAL** | **35%** | Nov 1 | Dec 10 | **39 days** |
+
+---
+
+## Next Immediate Action
+
+**👉 Phase 4: Data Quality Analysis (Starting)**
+
+Analyze the 7 `stg_*` tables to:
+1. Identify data quality issues
+2. Document null patterns
+3. Assess duplicates
+4. Plan transformation logic
+
+**Output:** Transformation specification document (input to Phase 5)
+
+---
+
+## Success Criteria (Project Completion)
+
+### Phase 4 Success
+- ✅ Data quality report completed
+- ✅ Transformation requirements documented
+- ✅ Edge cases identified
+- ✅ Phase 5 ready to proceed
+
+### Phase 5 Success
+- ✅ All 6 dataflows enhanced with transformation logic
+- ✅ Data validation passing
+- ✅ Transformation documentation complete
+
+### Phase 6 Success
+- ✅ Gold layer tables created
+- ✅ KPI calculations working
+- ✅ Power BI can connect to gold layer
+
+### Phase 7 Success
+- ✅ 4+ dashboards operational
+- ✅ Stakeholders can view key metrics
+- ✅ Dashboards refreshing automatically
+
+### Phase 8 Success
+- ✅ GitHub Actions workflows running
+- ✅ Automated refresh schedules working
+- ✅ Notifications configured
+
+### Phase 9 Success
+- ✅ Complete documentation published
+- ✅ Blog posts shared
+- ✅ Community learnings documented
+
+---
+
+**Document Version:** 1.1
+**Last Updated:** November 2, 2025 (Updated to reflect pass-through phase)
+**Status:** Current for Phase 4
